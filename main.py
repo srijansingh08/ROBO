@@ -17,8 +17,8 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
 chatStr = ""
-OPENWEATHERMAP_API_KEY = '9499cf83cff9ddd1a1b723e60d86110e'
-NEWS_API_KEY = '9b97e37cf1fe4e7d9a069a2ff9e7d7c0'
+OPENWEATHERMAP_API_KEY = '9499cf83cff9ddd1a1b723e60d86110e' # use your own weather api key
+NEWS_API_KEY = '9b97e37cf1fe4e7d9a069a2ff9e7d7c0' # use your own news api key
 
 
 def speak(audio):

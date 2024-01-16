@@ -12,7 +12,7 @@ import wikipedia  # pip install wikipedia
 from config import apikey
 
 engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices')
+voices = engine.getProperty('voices') #getting details of current voice
 # print(voices[1].id)
 engine.setProperty('voice', voices[0].id)
 
@@ -23,7 +23,7 @@ NEWS_API_KEY = '9b97e37cf1fe4e7d9a069a2ff9e7d7c0' # use your own news api key
 
 def speak(audio):
     engine.say(audio)
-    engine.runAndWait()
+    engine.runAndWait() #Without this command, speech will not be audible to us.
 
 
 def wishMe():
@@ -171,13 +171,13 @@ def takeCommand():
 
     try:
         print("Recognizing...")
-        q = r.recognize_google(audio, language='en-in')
-        print(f"User said: {q}\n")
+        q = r.recognize_google(audio, language='en-in') #Using google for voice recognition.
+        print(f"User said: {q}\n") #User query will be printed.
 
     except Exception as e:
         # print(e)
-        print("Sir Say that again please...")
-        return "None"
+        print("Sir Say that again please...") #Say that again will be printed in case of improper voice 
+        return "None" #None string will be returned
     return q
 
 
@@ -194,7 +194,7 @@ if __name__ == "__main__":
     wishMe()
     while True:
         # if 1:
-        query = takeCommand().lower()
+        query = takeCommand().lower() #Converting user query into lower case
         sites = [["youtube", "https://www.youtube.com"], ["wikipedia", "https://www.wikipedia.com"],
                  ["google", "https://www.google.com"], ["stackoverflow", "https://www.stackoverflow.com"]]
         for site in sites:
@@ -203,7 +203,7 @@ if __name__ == "__main__":
                 webbrowser.open(site[1])
 
         # Logic for executing tasks based on query
-        if 'wikipedia'.lower() in query.lower():
+        if 'wikipedia'.lower() in query.lower(): #if wikipedia found in the query then this block will be executed
             speak('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
             results = wikipedia.summary(query, sentences=2)
@@ -212,7 +212,7 @@ if __name__ == "__main__":
             speak(results)
 
         elif 'play music'.lower() in query.lower():
-            music_dir = 'D:\\Music'
+            music_dir = 'D:\\Music' # path for sony directory
             songs = os.listdir(music_dir)
             print(songs)
             os.startfile(os.path.join(music_dir, songs[0]))
@@ -223,11 +223,11 @@ if __name__ == "__main__":
             speak(f"Sir, the time is {strTime}")
 
         elif 'open vs code'.lower() in query.lower():
-            codePath = "C:\\Users\\srija\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+            codePath = "C:\\Users\\srija\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe" #path for vs code
             os.startfile(codePath)
 
         elif 'open microsoft teams'.lower() in query.lower():
-            codePath = "C:\\Users\\srija\\AppData\\Local\\Microsoft\\Teams\\Update.exe --processStart Teams.exe"
+            codePath = "C:\\Users\\srija\\AppData\\Local\\Microsoft\\Teams\\Update.exe --processStart Teams.exe" #path for Microsoft teams
             os.startfile(codePath)
 
         elif "Quit".lower() in query.lower():
